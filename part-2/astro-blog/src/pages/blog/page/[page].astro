@@ -1,0 +1,58 @@
+---
+import { getCollection } from 'astro:content'
+import Layout from '@layouts/Layout.astro'
+
+import type { Page, PaginateFunction } from 'astro'
+
+export async function getStaticPaths({
+  paginate,
+}: {
+  paginate: PaginateFunction
+}) {
+  let posts = await getCollection('posts')
+  posts = posts.sort(
+    (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
+  )
+  return paginate(posts, { pageSize: 4 })
+}
+
+const { page }: { page: Page } = Astro.props
+---
+
+<Layout title='Blog archive'>
+  <h1>Blog archive</h1>
+
+  <p class='my-4'>List of all the blog posts:</p>
+  <ul class='list-inside list-disc'>
+    {
+      page.data.map((post) => (
+        <li>
+          <a class='underline' href={`/blog/${post.id}`}>
+            {post.data.title}
+          </a>
+          <span>({post.data.date.toLocaleDateString()})</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <p class='my-4'>Page {page.currentPage} of {page.lastPage}</p>
+  {
+    page.url.next && (
+      <p>
+        <a class='underline' href={page.url.next}>
+          next
+        </a>
+      </p>
+    )
+  }
+  {
+    page.url.prev && (
+      <p>
+        <a class='underline' href={page.url.prev}>
+          previous
+        </a>
+      </p>
+    )
+  }
+</Layout>

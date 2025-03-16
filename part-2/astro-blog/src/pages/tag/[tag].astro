@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content'
+import Layout from '@layouts/Layout.astro'
+
+export async function getStaticPaths() {
+  let posts = await getCollection('posts')
+
+  posts = posts.sort(
+    (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
+  )
+
+  const tags: string[] = []
+  posts.map((post) => {
+    post.data.tags.map((tag) => {
+      if (!tags.includes(tag)) tags.push(tag)
+    })
+  })
+
+  return tags.map((tag) => ({
+    params: { tag },
+    props: { posts: posts.filter((post) => post.data.tags.includes(tag)) },
+  }))
+}
+
+const { tag } = Astro.params
+const { posts } = Astro.props
+---
+
+<Layout title='Posts by tag'>
+  <h1>Posts by tag</h1>
+
+  <p class='my-4'>Posts tagged {tag}:</p>
+
+  <ul class='list-inside list-disc'>
+    {
+      posts.map((post) => (
+        <li>
+          <a class='underline' href={`/blog/${post.id}`}>
+            {post.data.title}
+          </a>
+          <span>({post.data.date.toLocaleDateString()})</span>
+        </li>
+      ))
+    }
+  </ul>
+</Layout>
