@@ -1,0 +1,22 @@
+---
+import './src/styles/global.css'
+---
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='description' content='Astro description' />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='generator' content={Astro.generator} />
+    <title>A cool website</title>
+  </head>
+  <body>
+    <main class='bg-white min-h-screen dark:text-white dark:bg-black'>
+      <div class='max-w-3xl mx-auto px-4 py-8' id='markdown'>
+        <slot />
+      </div>
+    </main>
+  </body>
+</html>
