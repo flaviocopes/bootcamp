@@ -1,0 +1,16 @@
+{
+  "name": "hono-bun-forms-postgresql-drizzle",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.40.1",
+    "hono": "^4.7.5",
+    "pg": "^8.14.1"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/pg": "^8.11.11",
+    "drizzle-kit": "^0.30.5"
+  }
+}
