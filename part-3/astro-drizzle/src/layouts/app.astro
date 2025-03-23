@@ -1,0 +1,46 @@
+---
+import './src/styles/global.css'
+const { title } = Astro.props
+const url = new URL(Astro.request.url).pathname
+---
+
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <link rel='icon' type='image/x-icon' href='/favicon.ico' />
+    <meta name='viewport' content='width=device-width' />
+    <title>{title}</title>
+  </head>
+
+  <body class='flex w-full h-screen bg-gray-200'>
+    <aside class='w-1/5 py-4 px-3 bg-gray-200 min-w-30'>
+      <nav class='flex flex-col space-y-2 text-xs font-mono'>
+        <a
+          href='/app'
+          class:list={[
+            'px-3 py-2 rounded',
+            url === '/app'
+              ? 'bg-white text-gray-900 font-medium'
+              : 'text-gray-700 hover:bg-gray-300',
+          ]}>
+          Tasks
+        </a>
+        <a
+          href='/app/categories'
+          class:list={[
+            'px-3 py-2 rounded',
+            url === '/app/categories'
+              ? 'bg-white text-gray-900 font-medium'
+              : 'text-gray-700 hover:bg-gray-300',
+          ]}>
+          Categories
+        </a>
+      </nav>
+    </aside>
+    <main class='flex-1 py-4 px-4 bg-white'>
+      <div class=''>
+        <slot />
+      </div>
+    </main>
+  </body>
+</html>

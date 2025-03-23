@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/common.astro'
+---
+
+<Layout title='Pricing'>
+  <div class='space-y-12 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-x-8'>
+    <div
+      class='p-8 bg-white border border-gray-200 rounded-2xl shadow-sm flex flex-col'>
+      <h3 class='text-3xl font-semibold text-gray-900'>Basic</h3>
+
+      <p class='mt-4 mx-auto'>
+        <span class='text-5xl font-extrabold tracking-tight'>$29</span>
+        <span class='ml-1 text-xl font-semibold'>/month</span>
+      </p>
+      <p class='mt-6 text-gray-500'>The essentials</p>
+
+      <ul role='list' class='mt-6 space-y-6'>
+        <li class='flex'>
+          <span class='-mt-2 text-blue-500 text-3xl'>&check;</span>
+          <span class='ml-3 text-gray-500 text-left'>Access to our service</span
+          >
+        </li>
+
+        <li class='flex'>
+          <span class='-mt-2 text-blue-500 text-3xl'>&check;</span>
+          <span class='ml-3 text-gray-500 text-left'>Support</span>
+        </li>
+      </ul>
+    </div>
+
+    <div
+      class='p-8 bg-white border border-gray-200 rounded-2xl shadow-sm flex flex-col'>
+      <h3 class='text-3xl font-semibold text-gray-900'>Pro</h3>
+
+      <p class='mt-4 mx-auto'>
+        <span class='text-5xl font-extrabold tracking-tight'>$99</span>
+        <span class='ml-1 text-xl font-semibold'>/month</span>
+      </p>
+      <p class='mt-6 text-gray-500'>Much more features</p>
+
+      <ul role='list' class='mt-6 space-y-6'>
+        <li class='flex'>
+          <span class='-mt-2 text-blue-500 text-3xl'>&check;</span>
+          <span class='ml-3 text-gray-500'>Access to our service</span>
+        </li>
+
+        <li class='flex'>
+          <span class='-mt-2 text-blue-500 text-3xl'>&check;</span>
+          <span class='ml-3 text-gray-500 text-left'>Support</span>
+        </li>
+
+        <li class='flex'>
+          <span class='-mt-2 text-blue-500 text-3xl'>&check;</span>
+          <span class='ml-3 text-gray-500 text-left'>More features</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <a
+    href='#'
+    class='bg-blue-500 text-white hover:bg-blue-600 mt-8 block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium text-xl'
+    >Sign up</a
+  >
+</Layout>
