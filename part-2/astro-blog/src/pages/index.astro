@@ -11,10 +11,10 @@ posts.map((post) => {
 })
 
 posts = posts
-  .slice(-4)
   .sort(
     (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
   )
+  .slice(-4)
 ---
 
 <Layout>
