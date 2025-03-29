@@ -12,7 +12,7 @@ interface Task {
   category_name: string | null
 }
 
-export async function fetchTasks(): Promise<Task[]> {
+export async function fetchTasks(userId: string): Promise<Task[]> {
   try {
     const result = await db
       .select({
@@ -24,6 +24,7 @@ export async function fetchTasks(): Promise<Task[]> {
       })
       .from(tasks)
       .leftJoin(categories, eq(tasks.categoryId, categories.id))
+      .where(eq(tasks.userId, userId))
       .orderBy(desc(tasks.createdAt))
 
     return result as Task[]
@@ -38,7 +39,7 @@ interface Category {
   name: string
 }
 
-export async function fetchCategories(): Promise<Category[]> {
+export async function fetchCategories(userId: string): Promise<Category[]> {
   try {
     const result = await db
       .select({
@@ -46,6 +47,7 @@ export async function fetchCategories(): Promise<Category[]> {
         name: categories.name,
       })
       .from(categories)
+      .where(eq(categories.userId, userId))
       .orderBy(categories.name)
 
     return result as Category[]
@@ -55,27 +57,32 @@ export async function fetchCategories(): Promise<Category[]> {
   }
 }
 
-export async function addCategory(name: string) {
+export async function addCategory(name: string, userId: string) {
   try {
     await db.insert(categories).values({
       name: name,
+      userId: userId,
     })
   } catch (error: any) {
     console.log('Error:', error.message)
   }
 }
 
-export async function addTask(title: string, categoryId: string) {
+export async function addTask(
+  title: string,
+  categoryId: string,
+  userId: string
+) {
   try {
     await db.insert(tasks).values({
       title: title,
       categoryId: parseInt(categoryId, 10),
+      userId: userId,
     })
   } catch (error: any) {
     console.log('Error:', error.message)
   }
 }
-
 export async function deleteTask(id: string) {
   try {
     await db.delete(tasks).where(eq(tasks.id, parseInt(id, 10)))

@@ -1,0 +1,22 @@
+---
+import { auth } from '@src/auth'
+
+if (Astro.request.method === 'POST') {
+  try {
+    await auth.api.signOut({ headers: Astro.request.headers })
+
+    return new Response(null, {
+      status: 302,
+      headers: {
+        Location: '/',
+        'Set-Cookie':
+          'better-auth.session_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT',
+      },
+    })
+  } catch (error: any) {
+    console.error('Error:', error)
+  }
+}
+
+return Astro.redirect('/')
+---
