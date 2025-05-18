@@ -1,4 +1,5 @@
-import { ChangeEvent, useState } from 'react'
+import { useState, type ChangeEvent } from 'react'
+
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 

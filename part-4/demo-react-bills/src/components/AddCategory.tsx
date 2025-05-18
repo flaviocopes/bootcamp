@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { useState, type ChangeEvent } from 'react'
 
 type Props = {
   addCategory: (category: string) => void
