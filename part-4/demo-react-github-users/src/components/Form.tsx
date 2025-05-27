@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FormEvent } from 'react'
+import { type FormEvent } from 'react'
 
 type Props = {
   fetchData: (username: string) => void
